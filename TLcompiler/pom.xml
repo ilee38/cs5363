@@ -4,11 +4,24 @@
 
   <groupId>lee.iram</groupId>
   <artifactId>TLcompiler</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>jar</packaging>
 
   <name>TLcompiler</name>
   <url>http://maven.apache.org</url>
+  
+  <organization>
+  	<name>University of Texas at San Antonio</name>
+  	<url>http://www.utsa.edu</url>
+  </organization>
+  
+  <developers>
+  	<developer>
+  		<id>amz352</id>
+  		<name>Iram Lee</name>
+  		<email>iram.lee@gmail.com</email>
+  	</developer>
+  </developers>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,4 +35,16 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <build>
+  	<plugins>
+  		<plugin>
+  			<artifactId>maven-compiler-plugin</artifactId>
+			<version>3.3</version>
+			<configuration>
+				<source>1.8</source>
+				<target>1.8</target>
+			</configuration>
+  		</plugin>
+  	</plugins>
+  </build>
 </project>

@@ -59,7 +59,7 @@ public class InitScannerTables {
 			tokenTypeTable.put("13", "COMPARE(<=)");
 			tokenTypeTable.put("14", "COMPARE(>)");
 			tokenTypeTable.put("15", "COMPARE(>=)");
-			tokenTypeTable.put("16", "KEYWORD");	//should return the keyword itself
+			tokenTypeTable.put("16", "KEYWORD");	//should return the keyword itself (in upper case)
 			tokenTypeTable.put("17", "ident");	//should return ident+(xyz..)
 			tokenTypeTable.put("18", "num");	//should return num+(123..)
 			tokenTypeTable.put("19", "num");	//state for number zero "0" Should return num+(0)

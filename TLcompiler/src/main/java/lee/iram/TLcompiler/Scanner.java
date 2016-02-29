@@ -20,7 +20,7 @@ public class Scanner {
 		this.fileName = file;
 	}
 	
-//Generates a text file containing the list of tokens
+//Starting method of the Scanner class: Generates a text file containing the list of tokens
 	public void writeTokenList(){
 		String inputLine;
 		initializeTables();
@@ -125,7 +125,7 @@ public class Scanner {
 		}
 	}
 	
-//Perfoms lookahead
+//Performs lookahead
 	private void doLookahead(String nextState, String token){
 		
 	}

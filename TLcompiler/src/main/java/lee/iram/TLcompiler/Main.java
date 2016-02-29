@@ -13,10 +13,14 @@ import java.io.InputStream;
 public class Main {
 
 	public static void main(String[] args) throws Exception{
+		String srcCodeFileName = null;
+		Scanner scan = new Scanner(srcCodeFileName);
 		try{
-			String srcCodeFileName = args[0];
-		} catch(Exception e){}
-
+			srcCodeFileName = args[0];
+		} catch(Exception e){
+			System.out.println("Invalid file name");
+		}
+		scan.writeTokenList();
 	}
 
 }

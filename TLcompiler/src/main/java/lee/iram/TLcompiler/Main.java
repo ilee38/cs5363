@@ -14,13 +14,13 @@ public class Main {
 
 	public static void main(String[] args) throws Exception{
 		String srcCodeFileName = null;
-		Scanner scan = new Scanner(srcCodeFileName);
+		Scanner scan = new Scanner();
 		try{
-			srcCodeFileName = args[0];
+			srcCodeFileName = "test.txt";//args[0];
 		} catch(Exception e){
 			System.out.println("Invalid file name");
 		}
-		scan.writeTokenList();
+		scan.writeTokenList(srcCodeFileName);
 	}
 
 }

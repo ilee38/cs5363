@@ -16,12 +16,13 @@ public class Scanner {
 	private ArrayList<String> bufferBlock = new ArrayList<String>();
 	
 //Scanner constructor
-	public Scanner(String file){
-		this.fileName = file;
+	public Scanner(){
+		
 	}
 	
 //Starting method of the Scanner class: Generates a text file containing the list of tokens
-	public void writeTokenList(){
+	public void writeTokenList(String file){
+		this.fileName = file;
 		String inputLine;
 		initializeTables();
 		BufferedReader reader = openFile(fileName);
@@ -30,12 +31,13 @@ public class Scanner {
 				inputLine = reader.readLine();
 				if (inputLine == null)break;
 				bufferBlock = fillBuffer(inputLine);
-				findTokens(bufferBlock);
+				System.out.println(bufferBlock);
+				//findTokens(bufferBlock);
 			}
 		} catch (IOException e) {
 			System.out.println("File error");
 			e.printStackTrace();
-		}
+		} 
 		
 	}
 	
@@ -146,6 +148,7 @@ public class Scanner {
 		BufferedReader rd = null;
 		try{
 			rd = new BufferedReader(new FileReader(fileName));
+			System.out.println("File opened successfully");
 		}catch (IOException ex){
 			System.out.println("Can't open that file");
 		}
@@ -158,6 +161,9 @@ public class Scanner {
 		transitionTable = scannerTables.getTransTable();
 		tokenType = scannerTables.getTokenTypeTable();
 		keywordList = scannerTables.getKeywordTable();
+		System.out.println(transitionTable.toString());
+		System.out.println(tokenType.toString());
+		System.out.println(keywordList.toString());
 	}
 }
 

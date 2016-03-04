@@ -32,7 +32,7 @@ public class Scanner {
 				if (inputLine == null)break;
 				bufferBlock = fillBuffer(inputLine);
 				System.out.println(bufferBlock);
-				//findTokens(bufferBlock);
+				findTokens(bufferBlock);
 			}
 		} catch (IOException e) {
 			System.out.println("File error");
@@ -46,26 +46,32 @@ public class Scanner {
 //error
 	private void findTokens(ArrayList<String> bufferBlock){
 		String curChar, curState, nextChar, nextState, token;
-		curState = "0";									//Initialize current state to initial state
+		curState = "0"; nextState = "0"; token = "";		//Initialize current state to initial state
 		for(int i = 0; i < bufferBlock.size(); i++){
 			curChar = bufferBlock.get(i);
+			if(curChar.equals("#"))break;
+			System.out.println("curChar: " + curChar);
 			if(transitionTable.containsKey(curChar)){		//Check if valid input for state 0
 				nextState = transitionTable.get(curChar);
-			}else{
-				System.out.println("SYNTAX ERROR");
-			}
-			if(tokenType.containsKey(nextState)){		//Check if next state is an accepting state
-				nextChar = bufferBlock.get(i+1);		//do lookahead 1 character
-				if((nextChar == " ") || (nextChar == "#")){
-					token = curChar;
-					saveToken(token);
+				System.out.println("next state: "+nextState);
+				if(tokenType.containsKey(nextState)){		//Check if next state is an accepting state
+					nextChar = bufferBlock.get(i+1);		//do lookahead 1 character
+					if((nextChar.equals(" ")) || (nextChar.equals("#"))){
+						token = curChar;
+						i++;	//skip blank space
+						System.out.println("token: "+token);
+					//	saveToken(token);
+					}else{
+						System.out.println("SYNTAX ERROR");
+					}
 				}else{
-					System.out.println("SYNTAX ERROR");
+					token += curChar;
+					curState = nextState;
+					System.out.println("partial token: "+token);
+				//	findNextState(token, curState, i);	//Find transition for non-initial state
 				}
 			}else{
-				token += curChar;
-				curState = nextState;
-				findNextState(token, curState, i);	//Find transition for non-initial state
+				System.out.println("SYNTAX ERROR");
 			}
 		}
 	}

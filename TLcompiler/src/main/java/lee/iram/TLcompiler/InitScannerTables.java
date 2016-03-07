@@ -1,17 +1,13 @@
-/**
- * 
- */
 package lee.iram.TLcompiler;
 
 import java.util.*;
 
 /**
  * @author iramlee
- * Creates the tables used by the scanner: State Transition table, a token type table for
- * token classification, and a list of all the allowed keywords in the language.
- * Note: the state transition table includes only the transitions from the initial state, 
- * once the scanner leaves the initial state, the transition to other states is "direct coded"
- * in the Scanner class. 
+ * Creates the tables used by the scanner: a state Transition table, a token type table for
+ * token classification, based on the ending state of a token, and a list of all the allowed 
+ * keywords in the language.
+ *  
  */
 public class InitScannerTables {
 	
@@ -40,11 +36,24 @@ public class InitScannerTables {
 	private HashMap<String, Integer> state_18 = new HashMap<String, Integer>();
 	private HashMap<String, Integer> state_19 = new HashMap<String, Integer>();
 	
-//Constructor
+/*
+ * Class Constructor
+ * 
+ */
 	public InitScannerTables(){
 	}
+
 	
-//Creates the scanner table containing the state transitions
+/*
+ * Returns the scanner table containing the state transitions. This is
+ * the main table used by the Scanner to determine the next state based on
+ * the input character.
+ * The data structure representing the table is an ArrayList of HashMaps.
+ * Each element in the array list represents the current state, with an
+ * associated hash map that indicates the next state based on the input
+ * character.
+ * 
+ */
 	public ArrayList<HashMap<String, Integer>> getScanTable(){
 		fillStateTables();
 		scanTable.add(state_0);
@@ -70,9 +79,13 @@ public class InitScannerTables {
 		return scanTable;
 	}
 	
-//Creates a table to match the type of token that was recognized
-//Associates the ending state of the token to the token type (see Scanner transition table
-//Excel file)
+	
+/*
+ * Returns a table to match the type of token that was recognized
+ * Associates the ending state of the token to the token type (see Scanner transition table
+ * Excel file)
+ * 
+ */
 		public Map<Integer, String> getTokenTypeTable(){
 			tokenTypeTable.put(1, "LP");
 			tokenTypeTable.put(2, "RP");
@@ -88,17 +101,25 @@ public class InitScannerTables {
 			tokenTypeTable.put(14, "COMPARE");		// >
 			tokenTypeTable.put(15, "COMPARE");		// >=
 			tokenTypeTable.put(16, "KEYWORD");		//should return the keyword itself (in lower case)
-			tokenTypeTable.put(17, "ident");		//should return ident+(XYZ..)
-			tokenTypeTable.put(18, "num");			//should return num+(123..)
-			tokenTypeTable.put(19, "num");			//state for number zero "0" Should return num+(0)
+			tokenTypeTable.put(17, "ident");		//should return ident(XYZ..)
+			tokenTypeTable.put(18, "num");			//should return num(123..)
+			tokenTypeTable.put(19, "num");			//state for number zero "0" Should return num(0)
 			return tokenTypeTable;
 		}
 		
-//Creates a set with all the keywords in the language. Used to check if token is a valid
-//keyword. Also contains the special keywords of the different types:
-//boollit = "false", "true"
-//MULTIPLICATIVE = "div", "mod"
-//"writeint" and "readint"
+
+/*
+ * Returns a table with all the keywords in the language. Used to print 
+ * each Keyword token per the BNF grammar. Also contains the special keywords 
+ * of the different types:
+ * 
+ * boollit = "false", "true"
+ * MULTIPLICATIVE = "div", "mod"
+ * "writeint" and "readint"
+ * 
+ * these are also treated as keywords.
+ * 
+ */
 		public Map<String, String> getKeywordTable(){
 			keywords.put("false", "boollit(false)");
 			keywords.put("true", "boollit(true)");
@@ -121,8 +142,13 @@ public class InitScannerTables {
 			return keywords;
 		}
 		
-//Fills out the HashMaps for each state, indicating the next transition on a given
-//input character
+		
+/*		
+ * Fills out the HashMaps for each state, indicating the next transition on a given
+ * input character. Transitions are based on the Scanner transition table
+ * (see Excel file on project's documentation)
+ *
+ */
 		private void fillStateTables(){
 			state_0.put("(", 1);
 			state_0.put(")", 2);
@@ -178,6 +204,3 @@ public class InitScannerTables {
 			state_19.put(" ", 19);
 		}
 }
-
-
-	

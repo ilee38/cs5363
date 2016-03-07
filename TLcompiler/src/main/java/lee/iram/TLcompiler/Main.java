@@ -7,7 +7,11 @@ import java.io.InputStream;
 
 /**
  * @author iramlee
- * Main class of the program, entry point to the compiler
+ * Main class of the program containing the main() method. This is the
+ * entry point to the compiler. 
+ * The main method gets the source code file name from the command line
+ * arguments. Then it starts an instance of the Scanner class, which
+ * performs the scanning and token output.
  *
  */
 public class Main {

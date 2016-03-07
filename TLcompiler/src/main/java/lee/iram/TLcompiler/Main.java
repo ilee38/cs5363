@@ -11,16 +11,23 @@ import java.io.InputStream;
  *
  */
 public class Main {
-
+	private String fileName;
+	
 	public static void main(String[] args) throws Exception{
-		String srcCodeFileName = null;
-		Scanner scan = new Scanner();
+		String srcCodeFileName = "";
 		try{
-			srcCodeFileName = "test.txt";//args[0];
-		} catch(Exception e){
-			System.out.println("Invalid file name");
-		}
-		scan.writeTokenList(srcCodeFileName);
+			srcCodeFileName = args[0];
+		} catch(Exception e){}
+		new Main(srcCodeFileName).start();
+	}
+	
+	public Main(String fileName){
+		this.fileName = fileName;
+	}
+	
+	public void start() throws Exception{
+		Scanner scan = new Scanner();
+		scan.writeTokenList(fileName);
 	}
 
 }

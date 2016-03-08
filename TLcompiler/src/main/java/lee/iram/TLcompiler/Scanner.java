@@ -14,7 +14,7 @@ import java.util.*;
  */
 public class Scanner {
 	
-	private final String OUTPUT_FILE_NAME = "ScannerOutput.txt";	//Output file for the token list
+	private final String OUTPUT_FILE_NAME = "ScannerOutput.tok";	//Output file for the token list
 	
 	private String fileName;
 	private boolean syntaxError = false;
@@ -127,8 +127,8 @@ public class Scanner {
 	
 
 /*
- * Checks if the lexeme is a keyword, identifier or digit. Then outputs the token on appropriate format based
- * on the BNF grammar. The token is saved on the output file.
+ * Checks if the lexeme is a keyword, identifier or digit. Then outputs the token on appropriate
+ * format based on the BNF grammar. The token is saved on the output file.
  * 
  */
 	private void lookupLexeme(String token, String lexeme){
@@ -181,7 +181,7 @@ public class Scanner {
 	private PrintWriter createFile(String fileName){
 		PrintWriter wr = null;
 		try{
-			wr = new PrintWriter(new FileWriter("ScannerOutput.txt"));
+			wr = new PrintWriter(new FileWriter(fileName));
 		} catch(IOException ex){
 			System.out.println("Error writing file");
 		}
@@ -190,7 +190,7 @@ public class Scanner {
 	
 
 /*	
- * Creates the 3 tables for used by the scanner
+ * Creates the 3 tables used by the scanner
  * 
  */
 	private void initializeTables(){

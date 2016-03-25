@@ -12,6 +12,8 @@ import java.util.*;
  */
 public class Parser {
 	private ArrayList<String> tokenStream;
+	int next = 0;	//"pointer" to the next token on the tokenStream
+	String token;
 
 	/*
 	 * Parser Constructor
@@ -22,11 +24,33 @@ public class Parser {
 	
 	
 	/*
-	 * Perform the recursive descent
+	 * Performs the recursive descent
 	 * */
 	public void performDescent(){
-		System.out.println("Entering Parser. printing token list");
-		System.out.println(tokenStream.toString());
+		token = tokenStream.get(next);
+		if(program()){
+			System.out.println("Parse success");
+		}else{
+			System.out.println("PARSER error");
+		}	
 	}
-
+	
+	//<program> 
+	private boolean program(){
+		if(token == "PROGRAM"){
+			return declarations() && term("BEGIN") && statementSequence() && term("END");
+		}else{
+			return false;
+		}
+	}
+	
+	//<declarations>
+	private boolean declarations(){
+		next++;
+		token = tokenStream.get(next);
+		if(token == "VAR"){
+			return term("ident") && 
+		}
+	}
+		
 }

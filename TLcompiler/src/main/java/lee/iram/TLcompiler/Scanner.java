@@ -136,14 +136,14 @@ public class Scanner {
 		lexeme = lexeme.trim();			//remove white spaces from lexeme
 		if(token.equals("KEYWORD")){
 			writer.println(keywordList.get(lexeme));
-			tokenStream.add(keywordList.get(lexeme));	//write token to array list
+			tokenStream.add(keywordList.get(lexeme));	//write token to array list for Parser
 		}else if (token.equals("ident") || token.equals("num") || token.equals("MULTIPLICATIVE")
 				|| token.equals("ADDITIVE") || token.equals("COMPARE")){
 			writer.println(token + "("+lexeme+")");
-			tokenStream.add(token + "("+lexeme+")");	//write token to array list
+			tokenStream.add(token);	//write token only to array list for Parser
 		}else{
 			writer.println(token);
-			tokenStream.add(token);		//write token to array list
+			tokenStream.add(token);		//write token to array list for Parser
 		}
 	}
 	

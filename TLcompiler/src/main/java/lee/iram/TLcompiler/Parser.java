@@ -25,15 +25,12 @@ public class Parser {
 	
 	/*
 	 * Performs the recursive descent. A method for each non-terminal in the TL15 language
-	 * is specified. For special input symbols MULTIPLICATIVE, ADDITIVE, boollit, ident and num,
-	 * only the first part of the string is extracted from the token received by the Scanner,
-	 * e.g. for token "ident(x)" from  the Scanner, only the "ident" substring is used by the 
-	 * Parser to determine the production rule to use, based on the parser table.
+	 * is specified.
 	 * */
 	public void performDescent(){
 		token = tokenStream.get(next);
 		if(program()){
-			System.out.println("Parse success");
+			System.out.println("PARSE success");
 		}else{
 			System.out.println("PARSER error");
 		}	

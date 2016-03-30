@@ -7,12 +7,12 @@ import java.util.*;
 
 /**
  * @author iramlee
- *
+ *	Contains a list of Decl
  */
 public class Decl extends ASTNode {
-	
-	HashMap<String, String> declList = new HashMap<String ,String>();
-	
+	ArrayList<Decl> declList = new ArrayList<Decl>();
+	String ident;
+	String type;
 	/*
 	 * Class constructor
 	 * @param stream 
@@ -20,5 +20,7 @@ public class Decl extends ASTNode {
 	 * */
 	public Decl(){
 	}
+	
+	
 	 
 }

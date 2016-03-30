@@ -7,7 +7,7 @@ package lee.iram.TLcompiler;
  * @author iramlee
  *
  */
-public abstract class ASTNode{
-	String type;
-	
+public class Program extends ASTNode{
+	Decl decl;
+	//StmntSeq stmnts;
 }

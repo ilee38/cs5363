@@ -24,8 +24,8 @@ public class Scanner {
 	private Map<String, String> keywordList;
 	private ArrayList<String> bufferBlock = new ArrayList<String>();
 	private PrintWriter writer = createFile(OUTPUT_FILE_NAME);
-	private ArrayList<String> tokenStream = new ArrayList<String>();	//token stream list to be used by the Parser
-	
+	private ArrayList<String> tokenStream = new ArrayList<String>();	//token stream to be used by the Parser
+																				
 /*	
  * Scanner constructor
  * 
@@ -136,14 +136,14 @@ public class Scanner {
 		lexeme = lexeme.trim();			//remove white spaces from lexeme
 		if(token.equals("KEYWORD")){
 			writer.println(keywordList.get(lexeme));
-			tokenStream.add(keywordList.get(lexeme));	//write token to array list for Parser
+			tokenStream.add(keywordList.get(lexeme));	//write token to list for Parser
 		}else if (token.equals("ident") || token.equals("num") || token.equals("MULTIPLICATIVE")
 				|| token.equals("ADDITIVE") || token.equals("COMPARE")){
 			writer.println(token + "("+lexeme+")");
-			tokenStream.add(token);	//write token only to array list for Parser
+			tokenStream.add(token);		//write token only to list for Parser
 		}else{
 			writer.println(token);
-			tokenStream.add(token);		//write token to array list for Parser
+			tokenStream.add(token);		//write token only to list for Parser
 		}
 	}
 	

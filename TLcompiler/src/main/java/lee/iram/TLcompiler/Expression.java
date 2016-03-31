@@ -9,8 +9,8 @@ package lee.iram.TLcompiler;
  */
 public class Expression extends ASTNode {
 	
-	Expression leftExp;
-	Expression rightExp;
+	//Expression leftExp;
+	//Expression rightExp;
 	
 	/*
 	 * Class Constructor

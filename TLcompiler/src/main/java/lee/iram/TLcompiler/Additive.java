@@ -12,7 +12,8 @@ public class Additive extends Expression {
 	String addSign;		//e.g. + or -
 	String id;
 	String num;
-	Expression exp;
+	Expression rightExp;
+	Expression LeftExp;
 	
 	/*
 	 *  Class Constructor

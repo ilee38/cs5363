@@ -8,8 +8,8 @@ package lee.iram.TLcompiler;
  *	Starting node of the AST, contains children Decl and StmntSeq
  */
 public class Program extends ASTNode{
-	Decl decl;
-	StmntSeq stmnt;
+	public Decl decList;
+	public StmntSeq stmntList;
 	
 	/*
 	 * Class Constructor

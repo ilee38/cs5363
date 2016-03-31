@@ -10,9 +10,11 @@ import java.util.*;
  *	Contains a list of Decl
  */
 public class Decl extends ASTNode {
-	ArrayList<Decl> declList = new ArrayList<Decl>();
-	String ident;
-	String type;
+	//ArrayList<Decl> declList = new ArrayList<Decl>();
+	 String ident;
+	 String type;
+	 Decl decls;
+	 
 	/*
 	 * Class constructor
 	 * @param stream 

@@ -39,18 +39,21 @@ public class Parser {
 	//<program> 
 	private boolean program(){
 		if(token.equals("PROGRAM")){
-			return declarations() && terminal("BEGIN") && statementSequence() && terminal("END");
+			Program progTree = new Program();	//Create Starting node of the AST
+			return declarations(progTree) && terminal("BEGIN") && statementSequence() && terminal("END");
 		}else{
 			return false;
 		}
 	}
 	
 	//<declarations>
-	private boolean declarations(){
+	private boolean declarations(ASTNode progTree){
 		token = tokenStream.get(next+1);
 		if(token.equals("VAR")){
+			Decl declarations = new Decl();		//Create declarations Node
+			
 			return terminal("VAR") && terminal("ident") && terminal("AS") && type() && terminal("SC") 
-					&& declarations();
+					&& declarations(progTree);
 		}else if(token.equals("BEGIN")){
 			return epsilon();
 		}else{

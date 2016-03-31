@@ -11,7 +11,7 @@ public class Statement extends ASTNode {
 	
 	Assignment assign;
 	IfStmnt ifSt;
-	WhileStmnt whileSt;
+	WhileStmnt wStmnt;
 	WriteInt writeInt;
 	/*
 	 * Class constructor

@@ -10,11 +10,8 @@ import java.util.*;
  *	Contains a list of Decl
  */
 public class Decl extends ASTNode {
-	//ArrayList<Decl> declList = new ArrayList<Decl>();
-	 String ident;
-	 String type;
-	 Decl decls;
-	 
+	Identifier ident = new Identifier();
+	  
 	/*
 	 * Class constructor
 	 * @param stream 
@@ -24,5 +21,12 @@ public class Decl extends ASTNode {
 	}
 	
 	
+	/*
+	 * Assigns the identifier object to the declaration
+	 * Note: the identifier contains a "name" and a "type"
+	 * */
+	public void setID(Identifier ident){
+		this.ident = ident;
+	}
 	 
 }

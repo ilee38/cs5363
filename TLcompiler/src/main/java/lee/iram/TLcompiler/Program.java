@@ -3,17 +3,33 @@
  */
 package lee.iram.TLcompiler;
 
+import java.util.*;
 /**
  * @author iramlee
  *	Starting node of the AST, contains children Decl and StmntSeq
  */
 public class Program extends ASTNode{
+	ArrayList<Decl> declList = new ArrayList<Decl>();
+	ArrayList<Statement> stmntList = new ArrayList<Statement>();
 	
 	/*
 	 * Class Constructor
 	 * */
 	public Program(){
-		Decl decList = new Decl();
-		StmntSeq stmntList = new StmntSeq();
 	}
+	
+	/*
+	 * Adds a Decl object to the decl list
+	 * */
+	public void addDecl(Decl decl){
+		this.declList.add(decl);
+	}
+	
+	/*
+	 * Adds a Statement object to the stmnt list
+	 * */
+	public void addStmnt(Statement stmnt){
+		this.stmntList.add(stmnt);
+	}
+	
 }

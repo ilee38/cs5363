@@ -51,7 +51,6 @@ public class Parser {
 		token = tokenStream.get(next+1);
 		if(token.equals("VAR")){
 			Decl declarations = new Decl();		//Create declarations Node
-			
 			return terminal("VAR") && terminal("ident") && terminal("AS") && type() && terminal("SC") 
 					&& declarations(progTree);
 		}else if(token.equals("BEGIN")){

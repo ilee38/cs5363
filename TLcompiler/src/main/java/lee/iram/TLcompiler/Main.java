@@ -20,7 +20,7 @@ public class Main {
 	public static void main(String[] args) throws Exception{
 		String srcCodeFileName = "";
 		try{
-			srcCodeFileName = "test2.tl"; //args[0];
+			srcCodeFileName = "sqrt.tl"; //args[0];
 		} catch(Exception e){}
 		new Main(srcCodeFileName).start();
 	}
@@ -32,7 +32,7 @@ public class Main {
 	public void start() throws Exception{
 		Scanner scan = new Scanner();
 		scan.writeTokenList(fileName);
-		Parser parse = new Parser(scan.getTokenStream());
+		Parser parse = new Parser(scan.getTokenStream(), scan.getLexemeStream());
 		parse.performDescent();
 	}
 

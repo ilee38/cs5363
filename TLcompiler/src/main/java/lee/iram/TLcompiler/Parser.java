@@ -12,14 +12,16 @@ import java.util.*;
  */
 public class Parser {
 	private ArrayList<String> tokenStream;
+	private ArrayList<String> lexemeStream;
 	int next = 0;	//"pointer" to the next token on the tokenStream
-	String token;
+	String token, lexeme;
 
 	/*
 	 * Parser Constructor
 	 * */
-	public Parser(ArrayList<String> tokenList){
+	public Parser(ArrayList<String> tokenList, ArrayList<String> lexemeList){
 		this.tokenStream = tokenList;
+		this.lexemeStream = lexemeList;
 	}
 	
 	
@@ -29,30 +31,29 @@ public class Parser {
 	 * */
 	public void performDescent(){
 		token = tokenStream.get(next);
-		if(program()){
+		
+		if(program()){	
 			System.out.println("PARSE success");
 		}else{
 			System.out.println("PARSER error");
-		}	
+		}
 	}
 	
 	//<program> 
 	private boolean program(){
 		if(token.equals("PROGRAM")){
-			Program progTree = new Program();	//Create Starting node of the AST
-			return declarations(progTree) && terminal("BEGIN") && statementSequence() && terminal("END");
+			return declarations() && terminal("BEGIN") && statementSequence() && terminal("END");
 		}else{
 			return false;
 		}
 	}
 	
 	//<declarations>
-	private boolean declarations(ASTNode progTree){
+	private boolean declarations(){
 		token = tokenStream.get(next+1);
 		if(token.equals("VAR")){
-			Decl declarations = new Decl();		//Create declarations Node
 			return terminal("VAR") && terminal("ident") && terminal("AS") && type() && terminal("SC") 
-					&& declarations(progTree);
+					&& declarations();
 		}else if(token.equals("BEGIN")){
 			return epsilon();
 		}else{

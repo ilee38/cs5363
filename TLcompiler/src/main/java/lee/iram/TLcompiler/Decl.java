@@ -10,14 +10,14 @@ import java.util.*;
  *	Contains a list of Decl
  */
 public class Decl extends ASTNode {
-	ArrayList<Identifier> declList = new ArrayList<Identifier>();
-	  
+	public Identifier id = new Identifier();  
 	/*
 	 * Class constructor
 	 * @param stream 
 	 * Accepts a stream of tokens
 	 * */
-	public Decl(){
+	public Decl(String name){
+		this.id.identName = name;
 	}
 	
 	

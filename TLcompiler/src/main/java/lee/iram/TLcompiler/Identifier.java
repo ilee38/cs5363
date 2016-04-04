@@ -10,8 +10,8 @@ import java.util.ArrayList;
  *
  */
 public class Identifier extends Expression {
-	String identName;
-	String identType;
+	public String identName;
+	public String identType;
 	/*
 	 * Class Constructor
 	 * */
@@ -22,8 +22,7 @@ public class Identifier extends Expression {
 	/*
 	 * Sets the identifier's name
 	 * */
-	public void setName(String id){
-		this.identName = id;
+	public void setName(){
 	}
 	
 	

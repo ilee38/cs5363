@@ -9,9 +9,8 @@ import java.util.*;
  *	Starting node of the AST, contains children Decl and StmntSeq
  */
 public class Program extends ASTNode{
-	ArrayList<Statement> stmntList = new ArrayList<Statement>();
-	Decl decl;
-	StmntSeq stmnt;
+	public ArrayList<Decl> decList = new ArrayList<Decl>();
+	public StmntSeq stmntList;
 	/*
 	 * Class Constructor
 	 * */

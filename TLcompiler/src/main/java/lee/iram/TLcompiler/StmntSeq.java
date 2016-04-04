@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class StmntSeq extends ASTNode {
 	
-	ArrayList<Statement> statmentList = new ArrayList<Statement>();
+	public ArrayList<Statement> statmentList = new ArrayList<Statement>();
 	/*
 	 * Constructor
 	 * */

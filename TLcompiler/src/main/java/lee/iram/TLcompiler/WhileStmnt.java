@@ -16,5 +16,6 @@ public class WhileStmnt extends Statement {
 	 * Class Constructor 
 	 */
 	public WhileStmnt(){
+		super();
 	}
 }

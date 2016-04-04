@@ -9,10 +9,12 @@ package lee.iram.TLcompiler;
  */
 public abstract class Statement extends ASTNode {
 	
-	Assignment assign;
-	IfStmnt ifSt;
-	WhileStmnt wStmnt;
-	WriteInt writeInt;
+	public Assignment assign;
+	public IfStmnt ifSt;
+	public WhileStmnt wStmnt;
+	public WriteInt writeInt;
+	
+	public Expression exp;
 	/*
 	 * Class constructor
 	 * */

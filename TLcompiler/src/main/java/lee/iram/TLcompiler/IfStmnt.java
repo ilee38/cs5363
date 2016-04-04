@@ -16,5 +16,6 @@ public class IfStmnt extends Statement {
 	 * Class Constructor
 	 * */
 	public IfStmnt(){
+		super();
 	}
 }

@@ -9,12 +9,15 @@ package lee.iram.TLcompiler;
  */
 public class Assignment extends Statement {
 	
-	String id;
+	Identifier id = new Identifier();
 	Expression exp;
+	boolean readint = false;
+	
 	/*
 	 * Class Constructor
 	 * */
 	public Assignment(){
+		super();
 	}
 	
 }

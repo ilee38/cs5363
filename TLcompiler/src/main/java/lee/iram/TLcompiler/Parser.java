@@ -15,6 +15,7 @@ public class Parser {
 	private ArrayList<String> lexemeStream;
 	int next = 0;	//"pointer" to the next token on the tokenStream
 	String token, lexeme;
+	boolean parseError = false;
 
 	/*
 	 * Parser Constructor
@@ -33,7 +34,7 @@ public class Parser {
 		token = tokenStream.get(next);
 		Program tree = new Program();
 		tree = program();
-		if(tree != null){	
+		if(!parseError){	
 			System.out.println("PARSE success");
 		}else{
 			System.out.println("PARSER error");
@@ -49,7 +50,8 @@ public class Parser {
 				if(!tokenStream.get(next+1).equals("VAR"))break;	//check for more VARs
 			}
 			if(terminal("BEGIN")){
-				prog.stmntList = statementSequence(prog);
+				StmntSeq stList = new StmntSeq();
+				prog.stmntList = statementSequence(stList);
 			}else{
 				return null;
 			}
@@ -115,9 +117,24 @@ public class Parser {
 		}
 	}
 	
-	//<statementSequence>
-	private StmntSeq statementSequence(Program prog){
-		return new StmntSeq();
+	//<statementSequence> 
+	//Note: END and ELSE are not checked (epsilon transitions)
+	private StmntSeq statementSequence(StmntSeq stmntList){
+		Statement st;
+		token = tokenStream.get(next+1);
+		if(token.equals("IF") || token.equals("WHILE") || token.equals("WRITEINT") || token.equals("ident")){
+			st = statement();
+			if(terminal("SC")){
+				stmntList.statmentList.add(st);
+				statementSequence(stmntList);
+				return stmntList;
+			}else{
+				parseError = true;
+				return stmntList = null;
+			}
+		}
+		return stmntList = null;
+		
 		/*	token = tokenStream.get(next+1);
 		if(token.equals("IF") || token.equals("WHILE") || token.equals("WRITEINT")
 				|| token.equals("ident")){
@@ -128,9 +145,33 @@ public class Parser {
 			return false;
 		} */
 	}
-/*	
+	
 	//<statement>
-	private boolean statement(){
+	private Statement statement(){
+		token = tokenStream.get(next+1);
+		Statement st;
+		if(token.equals("WRITEINT")){
+			WriteInt wrInt = new WriteInt();
+			st = writeInt(wrInt);
+			return st;
+		}else if(token.equals("IF")){
+			IfStmnt ifSt = new IfStmnt();
+			st = ifStatement(ifSt);
+			return st;
+		}else if(token.equals("WHILE")){
+			WhileStmnt wSt = new WhileStmnt();
+			st = whileStatement(wSt);
+			return st;
+		}else if(token.equals("ident")){
+			Assignment asgn = new Assignment();
+			st = assignment(asgn);
+			return st;
+		}else{
+			parseError = true;
+			return st = null;
+		}
+		
+		/*
 		token = tokenStream.get(next+1);
 		if(token.equals("WRITEINT")){
 			return writeInt();
@@ -142,42 +183,59 @@ public class Parser {
 			return assignment();	
 		}else{
 			return false;
-		}
+		} */
 	}
 	
 	//<assignment>
-	private boolean assignment(){
+	private Assignment assignment(Assignment asgn){
+		int pos = next+1;
+		if(terminal("ident") && terminal("ASGN")){
+			asgn.id.identName = lexemeStream.get(pos);
+			assign(asgn);
+			return asgn;
+		}else{
+			parseError = true;
+			return asgn = null;
+		}
+		
+		/*
 		token = tokenStream.get(next+1);
 		if(token.equals("ident")){
 			return terminal("ident") && terminal("ASGN") && assign();
 		}else{
 			return false;
-		}
+		} */
 	}
-	
+
+
 	//<assign>
-	private boolean assign(){
+	private void assign(Assignment asgn){
 		token = tokenStream.get(next+1);
 		if(token.equals("LP") || token.equals("num") || token.equals("ident") || token.equals("boollit")){
-			return expression();
-		}else if(token.equals("READINT")){
-			return terminal("READINT");
+			asgn.exp = expression();
+		}else if(terminal("READINT")){
+			asgn.readint = true;
 		}else{
-			return false;
+			parseError = true;
 		}
 	}
-	
+
 	//<ifStatement>
-	private boolean ifStatement(){
+	private IfStmnt ifStatement(IfStmnt ifSt){
+		ifSt = new IfStmnt();
+		return ifSt;
+		
+		/*
 		token = tokenStream.get(next+1);
 		if(token.equals("IF")){
 			return terminal("IF") && expression() && terminal("THEN") && statementSequence() && elseClause()
 					&& terminal("END");
 		}else{
 			return false;
-		}
+		} */
 	}
-	
+
+/*	
 	//<elseClause>
 	private boolean elseClause(){
 		token = tokenStream.get(next+1);
@@ -188,39 +246,50 @@ public class Parser {
 		}else{
 			return false;
 		}
-	} 
+	}  */
 	
 	//<whileStatement>
-	private boolean whileStatement(){
+	private WhileStmnt whileStatement(WhileStmnt wSt){
+		wSt = new WhileStmnt();
+		return wSt;
+		
+		
+		/*
 		token = tokenStream.get(next+1);
 		if(token.equals("WHILE")){
 			return terminal("WHILE") && expression() && terminal("DO") && statementSequence() && terminal("END");
 		}else{
 			return false;
-		}
+		} */
 	}
-*/	
+		
 	//<writeInt>
-	private boolean writeInt(){
+	private WriteInt writeInt(WriteInt wrInt){
+		wrInt = new WriteInt();
+		return wrInt;
+		/*
 		token = tokenStream.get(next+1);
 		if(token.equals("WRITEINT")){
 			return terminal("WRITEINT") && expression();
 		}else{
 			return false;
-		}
+		} */
 	}
 	
 	//<expression>
-	private boolean expression(){
+	private Expression expression(){
+		Expression exp = new Expression();
+		return exp;
+		/*
 		token = tokenStream.get(next+1);
 		if(token.equals("LP") || token.equals("num") || token.equals("ident")
 				|| token.equals("boollit") ){
 			return simpleExpression() && comp();
 		}else{
 			return false;
-		}
-	}
-	
+		}  */
+	}  
+/*	
 	//<comp>
 	private boolean comp(){
 		token = tokenStream.get(next+1);
@@ -296,6 +365,7 @@ public class Parser {
 			return false;
 		}
 	}
+*/	
 	
 	/*
 	 * Method terminal()

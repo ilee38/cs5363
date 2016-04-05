@@ -335,8 +335,24 @@ public class Parser {
 	
 	//<expression>
 	private Expression expression(){
-		Expression exp = new Expression();
-		return exp;
+		Expression exp; // = new Expression();
+		token = tokenStream.get(next+1);
+		if(token.equals("LP") || token.equals("num") || token.equals("ident")
+				|| token.equals("boollit")){
+			exp.leftExp = factor();
+			if(token.equals("COMPARE")){
+				exp.rightExp = compare();
+			}else if(token.equals("ADDITIVE")){
+				exp.rightExp = add();
+			}else if(token.equals("MULTIPLICATIVE")){
+				exp.rightExp = multi();
+			}
+		}else{
+			parseError = true;
+			return exp = null;
+		}
+		
+		
 		/*
 		token = tokenStream.get(next+1);
 		if(token.equals("LP") || token.equals("num") || token.equals("ident")

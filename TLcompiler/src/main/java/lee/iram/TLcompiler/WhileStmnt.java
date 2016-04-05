@@ -10,7 +10,7 @@ package lee.iram.TLcompiler;
 public class WhileStmnt extends Statement {
 	
 	
-	public Expression exp = new Expression();
+	public Expression exp;// = new Expression();
 	StmntSeq stmnts = new StmntSeq();
 	/*
 	 * Class Constructor 

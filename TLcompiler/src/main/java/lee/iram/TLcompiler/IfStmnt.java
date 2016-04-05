@@ -9,7 +9,7 @@ package lee.iram.TLcompiler;
  */
 public class IfStmnt extends Statement {
 	
-	public Expression ifExp = new Expression();
+	public Expression ifExp; //= new Expression();
 	public StmntSeq thenStmnts = new StmntSeq();
 	StmntSeq elseStmnts = new StmntSeq();
 	/*

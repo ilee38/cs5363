@@ -132,8 +132,12 @@ public class Parser {
 				parseError = true;
 				return stmntList = null;
 			}
+		}else if(token.equals("END") || token.equals("ELSE")){
+			return stmntList;
+		}else{
+			parseError = true;
+			return stmntList = null;
 		}
-		return stmntList = null;
 		
 		/*	token = tokenStream.get(next+1);
 		if(token.equals("IF") || token.equals("WHILE") || token.equals("WRITEINT")
@@ -222,8 +226,27 @@ public class Parser {
 
 	//<ifStatement>
 	private IfStmnt ifStatement(IfStmnt ifSt){
-		ifSt = new IfStmnt();
-		return ifSt;
+		if(terminal("IF")){
+			ifSt.exp = expression();
+			if(terminal("THEN")){
+				StmntSeq thenList = new StmntSeq();
+				ifSt.thenStmnts = statementSequence(thenList);
+				StmntSeq elseList = new StmntSeq();
+				ifSt.elseStmnts = elseClause(elseList);
+				if(terminal("END")){
+					return ifSt;
+				}else{
+					parseError = true;
+					return ifSt = null;
+				}
+			}else{
+				parseError = true;
+				return ifSt = null;
+			}
+		}else{
+			parseError = true;
+			return ifSt = null;
+		}
 		
 		/*
 		token = tokenStream.get(next+1);
@@ -235,9 +258,21 @@ public class Parser {
 		} */
 	}
 
-/*	
+	
 	//<elseClause>
-	private boolean elseClause(){
+	private StmntSeq elseClause(StmntSeq elseList){
+		if(terminal("ELSE")){
+			StmntSeq stList = new StmntSeq();
+			elseList = statementSequence(stList);
+			return elseList;
+		}else if(tokenStream.get(next).equals("END")){		//Epsilon transition on "END"
+			return elseList;
+		}else{
+			parseError = true;
+			return elseList = null;
+		}
+		
+		/*
 		token = tokenStream.get(next+1);
 		if(token.equals("ELSE")){
 			return terminal("ELSE") && statementSequence();
@@ -245,14 +280,30 @@ public class Parser {
 			return epsilon();
 		}else{
 			return false;
-		}
-	}  */
+		}  */
+	} 
 	
 	//<whileStatement>
 	private WhileStmnt whileStatement(WhileStmnt wSt){
-		wSt = new WhileStmnt();
-		return wSt;
-		
+		if(terminal("WHILE")){
+			wSt.exp = expression();
+			if(terminal("DO")){
+				StmntSeq doList = new StmntSeq();
+				wSt.stmnts = statementSequence(doList);
+			}else{
+				parseError = true;
+				return wSt = null;
+			}
+			if(terminal("END")){
+				return wSt;
+			}else{
+				parseError = true;
+				return wSt = null;
+			}
+		}else{
+			parseError = true;
+			return wSt = null;
+		}
 		
 		/*
 		token = tokenStream.get(next+1);
@@ -265,8 +316,14 @@ public class Parser {
 		
 	//<writeInt>
 	private WriteInt writeInt(WriteInt wrInt){
-		wrInt = new WriteInt();
-		return wrInt;
+		if(terminal("WRITEINT")){
+			wrInt.exp = expression();
+			return wrInt;
+		}else{
+			parseError = true;
+			return wrInt = null;
+		}
+		
 		/*
 		token = tokenStream.get(next+1);
 		if(token.equals("WRITEINT")){

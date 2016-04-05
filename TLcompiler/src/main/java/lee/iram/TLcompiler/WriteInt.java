@@ -9,7 +9,7 @@ package lee.iram.TLcompiler;
  */
 public class WriteInt extends Statement{
 	
-	public Expression exp;
+	public Expression exp = new Expression();
 	
 	/*
 	 * Class Constructor 

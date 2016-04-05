@@ -9,9 +9,9 @@ package lee.iram.TLcompiler;
  */
 public class IfStmnt extends Statement {
 	
-	Expression ifExp;
-	StmntSeq thenStmnts;
-	StmntSeq elseStmnts;
+	public Expression ifExp = new Expression();
+	public StmntSeq thenStmnts = new StmntSeq();
+	StmntSeq elseStmnts = new StmntSeq();
 	/*
 	 * Class Constructor
 	 * */

@@ -9,7 +9,7 @@ package lee.iram.TLcompiler;
  */
 public class Multiplicative extends Expression {
 	
-	String multSign;	//e.g. *, "div" or "mod"
+	String sign;	//e.g. *, "div" or "mod"
 	String id;
 	String num;
 	Expression exp;
@@ -18,5 +18,6 @@ public class Multiplicative extends Expression {
 	 * Class Constructor
 	 * */
 	public Multiplicative(){
+		super();
 	}
 }

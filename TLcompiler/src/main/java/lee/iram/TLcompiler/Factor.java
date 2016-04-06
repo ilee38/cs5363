@@ -7,18 +7,18 @@ package lee.iram.TLcompiler;
  * @author iramlee
  *
  */
-public class Compare extends Expression {
-	
-	String compOp;	//(i.e. !=, <, >, <=, >=, =)
-	String id;
+public class Factor extends Expression {
+	String ident;
 	String num;
 	String boollit;
 	Expression exp;
 	
+	
 	/*
-	 * Class Constructor
+	 *  Class Constructor
 	 * */
-	public Compare(){
+	public Factor(){
 		super();
 	}
+
 }

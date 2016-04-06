@@ -7,7 +7,7 @@ package lee.iram.TLcompiler;
  * @author iramlee
  *
  */
-public abstract class Expression extends ASTNode {
+public class Expression extends ASTNode {
 	
 	public Expression leftExp;
 	public Expression rightExp;
@@ -16,5 +16,6 @@ public abstract class Expression extends ASTNode {
 	 * Class Constructor
 	 **/
 	public Expression(){
+		super();
 	}
 }

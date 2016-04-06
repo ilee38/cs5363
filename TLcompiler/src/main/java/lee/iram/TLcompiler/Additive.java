@@ -9,15 +9,15 @@ package lee.iram.TLcompiler;
  */
 public class Additive extends Expression {
 	
-	String addSign;		//e.g. + or -
+	String sign;		//e.g. + or -
 	String id;
 	String num;
-	Expression rightExp;
-	Expression LeftExp;
+	Expression exp;
 	
 	/*
 	 *  Class Constructor
 	 * */
 	public Additive(){
+		super();
 	}
 }

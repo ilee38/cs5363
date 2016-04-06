@@ -335,18 +335,20 @@ public class Parser {
 	
 	//<expression>
 	private Expression expression(){
-		Expression exp; // = new Expression();
+		Expression exp = new Expression();
 		token = tokenStream.get(next+1);
 		if(token.equals("LP") || token.equals("num") || token.equals("ident")
 				|| token.equals("boollit")){
 			exp.leftExp = factor();
+			token = tokenStream.get(next+1);	//update token
 			if(token.equals("COMPARE")){
-				exp.rightExp = compare();
+				exp.rightExp = comp();
 			}else if(token.equals("ADDITIVE")){
 				exp.rightExp = add();
 			}else if(token.equals("MULTIPLICATIVE")){
 				exp.rightExp = multi();
 			}
+			return exp;
 		}else{
 			parseError = true;
 			return exp = null;
@@ -362,9 +364,24 @@ public class Parser {
 			return false;
 		}  */
 	}  
-/*	
+
 	//<comp>
-	private boolean comp(){
+	private Compare comp(){
+		token = tokenStream.get(next+1);
+		Compare compExp = new Compare();
+		if(terminal("COMPARE")){
+			compExp.compOp = lexemeStream.get(next);
+			compExp.exp = expression();
+			return compExp;
+		}else if(token.equals("RP") || token.equals("SC") || token.equals("THEN") || token.equals("DO")){
+			return compExp;		//epsilon transition
+		}else{
+			parseError = true;
+			return compExp = null;
+		}
+		
+		
+		/*
 		token = tokenStream.get(next+1);
 		if(token.equals("COMPARE")){
 			return terminal("COMPARE") && expression();
@@ -372,9 +389,11 @@ public class Parser {
 			return epsilon();
 		}else{
 			return false;
-		}
+		} */
 	}
 	
+	
+/*	
 	//<simpleExpression>
 	private boolean simpleExpression(){
 		token = tokenStream.get(next+1);
@@ -384,10 +403,25 @@ public class Parser {
 		}else{
 			return false;
 		}
-	}
+	}  */
 	
 	//<add>
-	private boolean add(){
+	private Additive add(){
+		token = tokenStream.get(next+1);
+		Additive addExp = new Additive();
+		if(terminal("ADDITIVE")){
+			addExp.sign = lexemeStream.get(next);
+			addExp.exp = expression();
+			return addExp;
+		}else if(token.equals("RP") || token.equals("SC") || token.equals("COMPARE") || token.equals("THEN")
+				|| token.equals("DO")){
+			return addExp;		//epsilon transition
+		}else{
+			parseError = true;
+			return addExp = null;
+		}
+		
+		/*
 		token = tokenStream.get(next+1);
 		if(token.equals("ADDITIVE")){
 			return terminal("ADDITIVE") && simpleExpression();
@@ -396,9 +430,10 @@ public class Parser {
 			return epsilon();
 		}else{
 			return false;
-		}
+		}  */
 	}
-	
+
+/*	
 	//<term>
 	private boolean term(){
 		token = tokenStream.get(next+1);
@@ -408,10 +443,25 @@ public class Parser {
 		}else{
 			return false;
 		}
-	}
+	} */
 	
 	//<multi>
-	private boolean multi(){
+	private Multiplicative multi(){
+		token = tokenStream.get(next+1);
+		Multiplicative multExp = new Multiplicative();
+		if(terminal("MULTIPLICATIVE")){
+			multExp.sign = lexemeStream.get(next);
+			multExp.exp = expression();
+			return multExp;
+		}else if(token.equals("RP") || token.equals("SC") || token.equals("COMPARE") || token.equals("THEN") 
+				|| token.equals("DO") || token.equals("ADDITIVE")){
+			return multExp;		//epsilon transition
+		}else{
+			parseError = true;
+			return multExp = null;
+		}
+		
+		/*
 		token = tokenStream.get(next+1);
 		if(token.equals("MULTIPLICATIVE")){
 			return terminal("MULTIPLICATIVE") && term();
@@ -420,11 +470,35 @@ public class Parser {
 			return epsilon();
 		}else{
 			return false;
-		}
+		}  */
 	}
 	
 	//<factor>
-	private boolean factor(){
+	private Factor factor(){
+		Factor factorExp = new Factor();
+		if(terminal("LP")){
+			factorExp.exp = expression();
+			if(terminal("RP")){
+				return factorExp;
+			}else{
+				parseError = true;
+				return factorExp = null;
+			}
+		}else if (terminal("num")){
+			factorExp.num = lexemeStream.get(next);
+			return factorExp;
+		}else if(terminal("ident")){
+			factorExp.ident = lexemeStream.get(next);
+			return factorExp;
+		}else if(terminal("boollit")){
+			factorExp.boollit = lexemeStream.get(next);
+			return factorExp;
+		}else{
+			parseError = true;
+			return factorExp = null;
+		}
+		
+		/*
 		token = tokenStream.get(next+1);
 		if(token.equals("LP")){
 			return terminal("LP") && expression() && terminal("RP");
@@ -436,9 +510,9 @@ public class Parser {
 			return terminal("boollit");
 		}else{
 			return false;
-		}
+		}  */
 	}
-*/	
+	
 	
 	/*
 	 * Method terminal()

@@ -475,6 +475,52 @@ public class Parser {
 	
 	//<factor>
 	private Factor factor(){
+		token = tokenStream.get(next+1);
+		Factor factorExp = new Factor();
+		if(token.equals("LP")){
+			if(terminal("LP")){
+				factorExp.exp = expression();
+				if(terminal("RP")){
+					return factorExp;
+				}else{
+					parseError = true;
+					return factorExp = null;
+				}
+			}else{
+				parseError = true;
+				return factorExp = null;
+			}
+		}else if(token.equals("num")){
+			if (terminal("num")){
+				factorExp.num = lexemeStream.get(next);
+				return factorExp;
+			}else{
+				parseError = true;
+				return factorExp = null;
+			}
+		}else if(token.equals("ident")){
+			if(terminal("ident")){
+				factorExp.ident = lexemeStream.get(next);
+				return factorExp;
+			}else{
+				parseError = true;
+				return factorExp = null;
+			}
+		}else if(token.equals("boollit")){
+			if(terminal("boollit")){
+				factorExp.boollit = lexemeStream.get(next);
+				return factorExp;
+			}else{
+				parseError = true;
+				return factorExp = null;
+			}
+		}else{
+			parseError = true;
+			return factorExp = null;
+		}
+		
+		
+		/*
 		Factor factorExp = new Factor();
 		if(terminal("LP")){
 			factorExp.exp = expression();
@@ -496,7 +542,7 @@ public class Parser {
 		}else{
 			parseError = true;
 			return factorExp = null;
-		}
+		} */
 		
 		/*
 		token = tokenStream.get(next+1);

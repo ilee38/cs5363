@@ -14,8 +14,7 @@ import java.util.*;
  */
 public class Scanner {
 	
-	private final String OUTPUT_FILE_NAME = "ScannerOutput.tok";	//Output file for the token list
-	
+	private String outputFileName;	//Output file for the token list
 	private String fileName;
 	private boolean syntaxError = false;
 	private int lineCount = 0;
@@ -23,7 +22,7 @@ public class Scanner {
 	private Map<Integer, String> tokenType;
 	private Map<String, String> keywordList;
 	private ArrayList<String> bufferBlock = new ArrayList<String>();
-	private PrintWriter writer = createFile(OUTPUT_FILE_NAME);
+	private PrintWriter writer;
 	private ArrayList<String> tokenStream = new ArrayList<String>();	//token stream to be used by the Parser
 	private ArrayList<String> lexemeStream = new ArrayList<String>();	//lexeme stream to be used by the Parser
 																				
@@ -31,7 +30,10 @@ public class Scanner {
  * Scanner constructor
  * 
  */
-	public Scanner(){	
+	public Scanner(String file){	
+		this.fileName = file;
+		this.outputFileName = file.substring(0, file.indexOf(".")) + ".tok";
+		this.writer = createFile(outputFileName);
 	}
 	
 /*
@@ -40,8 +42,7 @@ public class Scanner {
  * the comment lines from the code before sending for scanning
  * 
  */
-	public void writeTokenList(String file){
-		this.fileName = file;
+	public void writeTokenList(){
 		String inputLine;
 		initializeTables();
 		BufferedReader reader = openFile(fileName);

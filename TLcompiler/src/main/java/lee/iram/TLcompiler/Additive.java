@@ -20,4 +20,12 @@ public class Additive extends Expression {
 	public Additive(){
 		super();
 	}
+	
+	/*
+	* accept method for Visitors
+	* 
+	* */	
+		public void accept(Visitor v){
+			v.visit(this);
+		}
 }

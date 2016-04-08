@@ -13,10 +13,19 @@ import java.util.*;
 public class StmntSeq extends ASTNode {
 	
 	public ArrayList<Statement> statmentList = new ArrayList<Statement>();
-	/*
-	 * Constructor
-	 * */
+	
+/*
+* Constructor
+* */
 	public StmntSeq(){
+	}
+	
+/*
+* accept method for Visitors
+* 
+* */	
+	public void accept(Visitor v){
+		v.visit(this);
 	}
 	
 	

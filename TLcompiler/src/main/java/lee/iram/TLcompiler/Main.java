@@ -3,8 +3,6 @@
  */
 package lee.iram.TLcompiler;
 
-import java.io.InputStream;
-
 /**
  * @author iramlee
  * Main class of the program containing the main() method. This is the
@@ -20,7 +18,7 @@ public class Main {
 	public static void main(String[] args) throws Exception{
 		String srcCodeFileName = "";
 		try{
-			srcCodeFileName = "test2.tl"; //args[0];
+			srcCodeFileName = "sqrt.tl"; //args[0];
 		} catch(Exception e){}
 		new Main(srcCodeFileName).start();
 	}

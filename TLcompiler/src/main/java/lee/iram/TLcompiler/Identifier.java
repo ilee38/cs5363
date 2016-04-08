@@ -3,8 +3,6 @@
  */
 package lee.iram.TLcompiler;
 
-import java.util.ArrayList;
-
 /**
  * @author iramlee
  *
@@ -12,11 +10,20 @@ import java.util.ArrayList;
 public class Identifier extends Expression {
 	public String identName;
 	public String identType;
-	/*
-	 * Class Constructor
-	 * */
+	
+/*
+* Class Constructor
+* */
 	public Identifier(){
 	}
+	
+/*
+* accept method for Visitors
+* 
+* */	
+	public void accept(Visitor v){
+		v.visit(this);
+	}	
 	
 	
 	/*

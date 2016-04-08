@@ -9,13 +9,24 @@ package lee.iram.TLcompiler;
  */
 public class WhileStmnt extends Statement {
 	
-	
-	public Expression exp;// = new Expression();
+	public Expression exp;
 	StmntSeq stmnts = new StmntSeq();
-	/*
-	 * Class Constructor 
-	 */
+	
+	
+/*
+* Class Constructor 
+*/
 	public WhileStmnt(){
 		super();
 	}
+	
+	
+/*
+* accept method for Visitors
+* 
+* */	
+	public void accept(Visitor v){
+		v.visit(this);
+	}
+	
 }

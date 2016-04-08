@@ -3,12 +3,13 @@
  */
 package lee.iram.TLcompiler;
 
-import java.io.*;
 import java.util.*;
 
 /**
  * @author ilee
- * Parser class. Implements a Recursive Descent parser
+ * Parser class. Implements a Recursive Descent parser, based on the Parse table
+ * and the TL15 BNF grammar. The Parser generates an Abstract Syntax Tree 
+ * representing the program's structure
  */
 public class Parser {
 	private ArrayList<String> tokenStream;
@@ -34,6 +35,10 @@ public class Parser {
 		token = tokenStream.get(next);
 		Program tree = new Program();
 		tree = program();
+		SymbolTableVisitor v = new SymbolTableVisitor();
+		tree.accept(v);
+		HashMap<String, Identifier> symbolTab = v.getSymbolTable();
+		System.out.println(symbolTab.toString());
 		if(!parseError){	
 			System.out.println("PARSE success");
 		}else{
@@ -118,7 +123,6 @@ public class Parser {
 	}
 	
 	//<statementSequence> 
-	//Note: END and ELSE are not checked (epsilon transitions)
 	private StmntSeq statementSequence(StmntSeq stmntList){
 		Statement st;
 		token = tokenStream.get(next+1);

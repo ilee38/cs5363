@@ -20,4 +20,12 @@ public class Multiplicative extends Expression {
 	public Multiplicative(){
 		super();
 	}
+	
+	/*
+	* accept method for Visitors
+	* 
+	* */	
+		public void accept(Visitor v){
+			v.visit(this);
+		}	
 }

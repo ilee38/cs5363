@@ -9,12 +9,21 @@ package lee.iram.TLcompiler;
  */
 public class WriteInt extends Statement{
 	
-	public Expression exp; //= new Expression();
+	public Expression exp;
 	
-	/*
-	 * Class Constructor 
-	 */
+/*
+* Class Constructor 
+*/
 	public WriteInt(){
 		super();
+	}
+	
+	
+/*
+* accept method for Visitors
+* 
+* */	
+	public void accept(Visitor v){
+		v.visit(this);
 	}
 }

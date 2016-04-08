@@ -15,10 +15,18 @@ public class Compare extends Expression {
 	String boollit;
 	Expression exp;
 	
-	/*
-	 * Class Constructor
-	 * */
+/*
+* Class Constructor
+* */
 	public Compare(){
 		super();
 	}
+	
+/*
+* accept method for Visitors
+* 
+* */	
+		public void accept(Visitor v){
+			v.visit(this);
+		}
 }

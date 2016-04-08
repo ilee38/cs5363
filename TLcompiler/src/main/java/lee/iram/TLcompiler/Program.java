@@ -11,25 +11,21 @@ import java.util.*;
 public class Program extends ASTNode{
 	public ArrayList<Decl> decList = new ArrayList<Decl>();
 	public StmntSeq stmntList;
-	/*
-	 * Class Constructor
-	 * */
-	public Program(){
-		
-	}
+	
 /*
-	/*
-	 * Adds a Decl object to the decl list
-	 * *
-	public void addDecl(Decl decl){
-		this.declList.add(decl);
+ * Class Constructor
+ * 
+ * */
+	public Program(){
 	}
 	
-	/*
-	 * Adds a Statement object to the stmnt list
-	 * *
-	public void addStmnt(Statement stmnt){
-		this.stmntList.add(stmnt);
+	
+/*
+ * accept method for Visitors
+ * 
+ * */	
+	public void accept(Visitor v){
+		v.visit(this);
 	}
-*/
+
 }

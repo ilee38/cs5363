@@ -14,11 +14,19 @@ public class Factor extends Expression {
 	Expression exp;
 	
 	
-	/*
-	 *  Class Constructor
-	 * */
+/*
+*  Class Constructor
+* */
 	public Factor(){
 		super();
 	}
+	
+	/*
+	* accept method for Visitors
+	* 
+	* */	
+		public void accept(Visitor v){
+			v.visit(this);
+		}
 
 }

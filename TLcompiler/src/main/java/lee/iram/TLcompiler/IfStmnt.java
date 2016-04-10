@@ -11,7 +11,7 @@ public class IfStmnt extends Statement {
 	
 	public Expression ifExp;
 	public StmntSeq thenStmnts = new StmntSeq();
-	StmntSeq elseStmnts = new StmntSeq();
+	public StmntSeq elseStmnts = new StmntSeq();
 	
 	
 /*
@@ -19,6 +19,7 @@ public class IfStmnt extends Statement {
 * */
 	public IfStmnt(){
 		super();
+		this.type = "if";
 	}
 	
 /*

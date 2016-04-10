@@ -15,6 +15,7 @@ public class Identifier extends Expression {
 * Class Constructor
 * */
 	public Identifier(){
+		super();
 	}
 	
 /*
@@ -24,20 +25,5 @@ public class Identifier extends Expression {
 	public void accept(Visitor v){
 		v.visit(this);
 	}	
-	
-	
-	/*
-	 * Sets the identifier's name
-	 * */
-	public void setName(){
-	}
-	
-	
-	/*
-	 * Sets the identifier's type
-	 * */
-	public void setType(String type){
-		this.identType = type;
-	}
 
 }

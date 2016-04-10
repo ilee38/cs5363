@@ -10,7 +10,7 @@ package lee.iram.TLcompiler;
 public class WhileStmnt extends Statement {
 	
 	public Expression exp;
-	StmntSeq stmnts = new StmntSeq();
+	public StmntSeq stmnts = new StmntSeq();
 	
 	
 /*
@@ -18,6 +18,7 @@ public class WhileStmnt extends Statement {
 */
 	public WhileStmnt(){
 		super();
+		this.type = "while";
 	}
 	
 	

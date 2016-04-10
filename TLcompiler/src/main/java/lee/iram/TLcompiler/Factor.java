@@ -8,7 +8,7 @@ package lee.iram.TLcompiler;
  *
  */
 public class Factor extends Expression {
-	String ident;
+	Identifier ident = new Identifier();
 	String num;
 	String boollit;
 	Expression exp;

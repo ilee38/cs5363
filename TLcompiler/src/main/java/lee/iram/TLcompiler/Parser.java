@@ -15,15 +15,16 @@ public class Parser {
 	private ArrayList<String> tokenStream;
 	private ArrayList<String> lexemeStream;
 	int next = 0;	//"pointer" to the next token on the tokenStream
-	String token, lexeme;
+	String token, lexeme, outputFileName;
 	boolean parseError = false;
 
 	/*
 	 * Parser Constructor
 	 * */
-	public Parser(ArrayList<String> tokenList, ArrayList<String> lexemeList){
+	public Parser(ArrayList<String> tokenList, ArrayList<String> lexemeList, String filename){
 		this.tokenStream = tokenList;
 		this.lexemeStream = lexemeList;
+		this.outputFileName = filename;
 	}
 	
 	
@@ -35,10 +36,16 @@ public class Parser {
 		token = tokenStream.get(next);
 		Program tree = new Program();
 		tree = program();
+		
 		SymbolTableVisitor v = new SymbolTableVisitor();
 		tree.accept(v);
 		HashMap<String, Identifier> symbolTab = v.getSymbolTable();
 		System.out.println(symbolTab.toString());
+		TypeCheckVisitor visitType = new TypeCheckVisitor(symbolTab);
+		tree.accept(visitType);
+		GraphDrawVisitor graphVisit = new GraphDrawVisitor(outputFileName);
+		tree.accept(graphVisit);
+		
 		if(!parseError){	
 			System.out.println("PARSE success");
 		}else{
@@ -497,6 +504,7 @@ public class Parser {
 		}else if(token.equals("num")){
 			if (terminal("num")){
 				factorExp.num = lexemeStream.get(next);
+				factorExp.type = "int";
 				return factorExp;
 			}else{
 				parseError = true;
@@ -504,7 +512,7 @@ public class Parser {
 			}
 		}else if(token.equals("ident")){
 			if(terminal("ident")){
-				factorExp.ident = lexemeStream.get(next);
+				factorExp.ident.identName = lexemeStream.get(next);
 				return factorExp;
 			}else{
 				parseError = true;
@@ -513,6 +521,7 @@ public class Parser {
 		}else if(token.equals("boollit")){
 			if(terminal("boollit")){
 				factorExp.boollit = lexemeStream.get(next);
+				factorExp.type = "bool";
 				return factorExp;
 			}else{
 				parseError = true;

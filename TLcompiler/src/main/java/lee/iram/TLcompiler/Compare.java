@@ -10,7 +10,7 @@ package lee.iram.TLcompiler;
 public class Compare extends Expression {
 	
 	String compOp;	//(i.e. !=, <, >, <=, >=, =)
-	String id;
+	Identifier id;
 	String num;
 	String boollit;
 	Expression exp;
@@ -20,6 +20,7 @@ public class Compare extends Expression {
 * */
 	public Compare(){
 		super();
+		this.type = "bool";
 	}
 	
 /*

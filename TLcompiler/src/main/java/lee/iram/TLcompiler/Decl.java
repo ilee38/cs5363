@@ -17,6 +17,7 @@ public class Decl extends ASTNode {
 * */
 	public Decl(String name){
 		this.id.identName = name;
+		this.type = "decl";
 	}
 	
 /*

@@ -9,13 +9,15 @@ package lee.iram.TLcompiler;
  */
 public class Expression extends ASTNode {
 	
-	public Expression leftExp;
-	public Expression rightExp;
+	Expression leftExp;
+	Expression rightExp;
+	
 	
 /*
 * Class Constructor
 **/
 	public Expression(){
+		super();
 	}
 	
 /*
@@ -24,8 +26,6 @@ public class Expression extends ASTNode {
 * */	
 	public void accept(Visitor v){
 		v.visit(this);
-		//this.leftExp.accept(v);
-		//this.rightExp.accept(v);
 	}
 	
 }

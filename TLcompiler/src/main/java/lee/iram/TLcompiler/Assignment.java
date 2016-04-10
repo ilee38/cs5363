@@ -18,6 +18,7 @@ public class Assignment extends Statement {
 * */
 	public Assignment(){
 		super();
+		this.type = ":=";
 	}
 	
 /*

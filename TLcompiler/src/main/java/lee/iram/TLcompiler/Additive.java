@@ -10,7 +10,7 @@ package lee.iram.TLcompiler;
 public class Additive extends Expression {
 	
 	String sign;		//e.g. + or -
-	String id;
+	Identifier id;
 	String num;
 	Expression exp;
 	
@@ -19,6 +19,7 @@ public class Additive extends Expression {
 	 * */
 	public Additive(){
 		super();
+		this.type = "int";
 	}
 	
 	/*

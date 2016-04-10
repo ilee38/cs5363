@@ -16,6 +16,7 @@ public class WriteInt extends Statement{
 */
 	public WriteInt(){
 		super();
+		this.type = "writeint";
 	}
 	
 	

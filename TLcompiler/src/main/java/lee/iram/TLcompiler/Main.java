@@ -30,7 +30,7 @@ public class Main {
 	public void start() throws Exception{
 		Scanner scan = new Scanner(fileName);
 		scan.writeTokenList();
-		Parser parse = new Parser(scan.getTokenStream(), scan.getLexemeStream());
+		Parser parse = new Parser(scan.getTokenStream(), scan.getLexemeStream(), fileName);
 		parse.performDescent();
 	}
 

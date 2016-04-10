@@ -42,7 +42,7 @@ public class DummyVisitor implements Visitor {
 
 	@Override
 	public void visit(IfStmnt ifStmnt) {
-		ifStmnt.exp.accept(this);
+		ifStmnt.ifExp.accept(this);
 		ifStmnt.thenStmnts.accept(this);
 		ifStmnt.elseStmnts.accept(this);
 	}
@@ -65,25 +65,24 @@ public class DummyVisitor implements Visitor {
 
 	@Override
 	public void visit(Compare compare) {
-		compare.leftExp.accept(this);
-		compare.rightExp.accept(this);
+		compare.exp.accept(this);
 	}
 
 	@Override
 	public void visit(Additive additive) {
-		additive.leftExp.accept(this);
-		additive.rightExp.accept(this);
+		additive.exp.accept(this);
 	}
 
 	@Override
 	public void visit(Multiplicative multiplicative) {
-		multiplicative.leftExp.accept(this);
-		multiplicative.rightExp.accept(this);
+		multiplicative.exp.accept(this);
+		
 	}
 
 	@Override
 	public void visit(Factor factor) {
 		factor.exp.accept(this);
+		factor.ident.accept(this);
 		
 	}
 

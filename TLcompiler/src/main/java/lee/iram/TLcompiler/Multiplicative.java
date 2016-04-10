@@ -10,7 +10,7 @@ package lee.iram.TLcompiler;
 public class Multiplicative extends Expression {
 	
 	String sign;	//e.g. *, "div" or "mod"
-	String id;
+	Identifier id;
 	String num;
 	Expression exp;
 	
@@ -19,6 +19,7 @@ public class Multiplicative extends Expression {
 	 * */
 	public Multiplicative(){
 		super();
+		this.type = "int";
 	}
 	
 	/*

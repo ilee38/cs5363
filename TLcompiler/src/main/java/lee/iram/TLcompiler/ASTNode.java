@@ -8,6 +8,9 @@ package lee.iram.TLcompiler;
  *
  */
 public abstract class ASTNode{
+	
+	String type;
+	
 	public abstract void accept(Visitor v);
 	
 }

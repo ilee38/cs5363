@@ -24,7 +24,7 @@ public class TypeCheckVisitor extends DummyVisitor {
 		String id = identifier.identName;
 		if(table.containsKey(id)){
 			identifier.identType = table.get(id).identType;
-			System.out.println(identifier.identName + ":" + identifier.identType);
+			//System.out.println(identifier.identName + ":" + identifier.identType);
 		}else{
 			System.out.println("PARSE error: undeclared identifier");
 			return;

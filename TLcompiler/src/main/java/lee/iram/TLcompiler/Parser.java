@@ -40,7 +40,7 @@ public class Parser {
 		SymbolTableVisitor v = new SymbolTableVisitor();
 		tree.accept(v);
 		HashMap<String, Identifier> symbolTab = v.getSymbolTable();
-		System.out.println(symbolTab.toString());
+		//System.out.println(symbolTab.toString());
 		TypeCheckVisitor visitType = new TypeCheckVisitor(symbolTab);
 		tree.accept(visitType);
 		GraphDrawVisitor graphVisit = new GraphDrawVisitor(outputFileName);
